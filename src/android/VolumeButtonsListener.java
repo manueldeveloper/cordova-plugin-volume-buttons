@@ -20,11 +20,31 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 
 
 
+	/**
+	* 	Constructor of the VolumeButtonsListener class
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
 	public VolumeButtonsListener(){
 		volumeCallbackContext= null;
 	}
 
 
+	/**
+	* 	Method which executes the Javascript request
+	*
+	*	@param		action: String object with the action to execute
+	*	@param		args: JSONArray object with the arguments of the request
+	*	@param		callbackContext: CallbackContext object for call back into Javascript
+	*
+	*	@return		"boolean" which indicates if the action is valid (true) or not (false)
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
 		Log.d(VolumeButtonsListener_LOG, "Execute method called");
@@ -65,17 +85,48 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 		return false;
 	}
 
-
+	
+	/**
+	* 	Overwritten method for Android application lifecycle. It stops the key events listening process
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
 	public void onDestroy(){
 
 		// Stop the listening process
 		this.webView.setOnKeyListener(null);
 	}
 
-	public void onReset(){
 
+	/**
+	* 	Overwritten method for Android application lifecycle. It stops the key events listening process
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
+	public void onReset(){
+		
+		// Stop the listening process
+		this.webView.setOnKeyListener(null);
 	}
 
+
+	/**
+	* 	Overwritten method to receive the Android key events
+	*
+	*	@param		view: View object who emit the signal (CordovaWebView)
+	*	@param		keyCode: int with the identifier of the pressed key
+	*	@param		keyEvent: KeyEvent object with the information of the event
+	*
+	*	@return		"boolean" which indicates if the listener has consumed the event (true) or not (false) [Always false to allow that the event spreading]
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
 	public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
 
 		// Check if the event is equal to KEY_DOWN
@@ -94,7 +145,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 					Log.e(VolumeButtonsListener_LOG, ex.getMessage());
 				}
 			}
-			else if( keyCode == KeyEvent.KEYCODE_VOLUME_UP  ){
+			else if( keyCode == KeyEvent.KEYCODE_VOLUME_DOWN  ){
 
 				// Create a new JSONObject with the information and send it
 				JSONObject info= new JSONObject();
@@ -111,6 +162,17 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 		return false;
 	}
 
+
+	/**
+	* 	Method which sends back a new PluginResult to Javascript
+	*
+	*	@param		info: JSONObject object with the information to send back
+	*	@param		keepCallback: boolean which indicates if there will be more results
+	* 
+	* 	@date		27/02/2014
+	* 	@version	0.0.1
+	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
+	*/
 	private void sendSignal(JSONObject info, boolean keepCallback)
 	{
 		if( this.volumeCallbackContext != null ){
