@@ -26,7 +26,8 @@ Cordova plugin which notifies when the user presses the volume up and down butto
 
 ## Installation
 
-	cordova plugin add https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git
+`cordova plugin add https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git`
+`cordova plugin add com.manueldeveloper.volume-buttons`
 	
 ## volumebuttonslistener
 
