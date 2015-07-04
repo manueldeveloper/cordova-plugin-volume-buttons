@@ -154,6 +154,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 				try{
 					info.put("signal", new String("volume-up"));
 					sendSignal(info, true);
+					return true;
 				}
 				catch(JSONException ex){
 					Log.e(VolumeButtonsListener_LOG, ex.getMessage());
@@ -166,6 +167,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 				try{
 					info.put("signal", new String("volume-down"));
 					sendSignal(info, true);
+					return true;
 				}
 				catch(JSONException ex){
 					Log.e(VolumeButtonsListener_LOG, ex.getMessage());
