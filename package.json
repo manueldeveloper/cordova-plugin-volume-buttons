@@ -1,5 +1,5 @@
 {
-	"name":"VolumeButtons",
+	"name":"volumebuttons",
 	"version":"0.0.1",
 	"description":"Cordova plugin which notifies when the user presses the volume buttons of the device",
 	"cordova":{
@@ -8,7 +8,7 @@
 	},
 	"repository":{
 		"type":"git",
-		"url":"git+https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git",
+		"url":"git+https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git"
 	},
 	"keywords":[
 		"cordova",
