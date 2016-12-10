@@ -60,8 +60,8 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 	*
 	*	@return		"boolean" which indicates if the action is valid (true) or not (false)
 	* 
-	* 	@date		27/02/2014
-	* 	@version	0.0.1
+	* 	@date		10/12/2016
+	* 	@version	0.0.3
 	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
 	*/
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
@@ -78,7 +78,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 
 			// Get the reference to the callbacks and start the listening process
 			this.volumeCallbackContext= callbackContext;
-			this.webView.setOnKeyListener(this);
+			this.webView.getView().setOnKeyListener(this);
 
 			// Don't return any result now
 			PluginResult pluginResult= new PluginResult(PluginResult.Status.NO_RESULT);
@@ -91,7 +91,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 			// Erase the callbacks reference and stop the listening process
 			sendSignal(new JSONObject(), false); // release status callback in Javascript side
 			this.volumeCallbackContext= null;
-			this.webView.setOnKeyListener(null);
+			this.webView.getView().setOnKeyListener(null);
 			callbackContext.success();
 			return true;			
 		}
@@ -103,28 +103,28 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 	/**
 	* 	Overwritten method for Android application lifecycle. It stops the key events listening process
 	* 
-	* 	@date		27/02/2014
-	* 	@version	0.0.1
+	* 	@date		10/12/2016
+	* 	@version	0.0.3
 	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
 	*/
 	public void onDestroy(){
 
 		// Stop the listening process
-		this.webView.setOnKeyListener(null);
+		this.webView.getView().setOnKeyListener(null);
 	}
 
 
 	/**
 	* 	Overwritten method for Android application lifecycle. It stops the key events listening process
 	* 
-	* 	@date		27/02/2014
-	* 	@version	0.0.1
+	* 	@date		10/12/2016
+	* 	@version	0.0.3
 	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
 	*/
 	public void onReset(){
 		
 		// Stop the listening process
-		this.webView.setOnKeyListener(null);
+		this.webView.getView().setOnKeyListener(null);
 	}
 
 
@@ -137,8 +137,8 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 	*
 	*	@return		"boolean" which indicates if the listener has consumed the event (true) or not (false) [Always false to allow that the event spreading]
 	* 
-	* 	@date		27/02/2014
-	* 	@version	0.0.1
+	* 	@date		10/12/2016
+	* 	@version	0.0.3
 	* 	@author	ManuelDeveloper(manueldeveloper@gmail.com) 
 	*/
 	public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
@@ -154,6 +154,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 				try{
 					info.put("signal", new String("volume-up"));
 					sendSignal(info, true);
+					return true;
 				}
 				catch(JSONException ex){
 					Log.e(VolumeButtonsListener_LOG, ex.getMessage());
@@ -166,6 +167,7 @@ public class VolumeButtonsListener extends CordovaPlugin implements OnKeyListene
 				try{
 					info.put("signal", new String("volume-down"));
 					sendSignal(info, true);
+					return true;
 				}
 				catch(JSONException ex){
 					Log.e(VolumeButtonsListener_LOG, ex.getMessage());

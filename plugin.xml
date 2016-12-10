@@ -2,7 +2,7 @@
  
  <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
  		id="com.manueldeveloper.volume-buttons"
- 		version="0.0.2">
+ 		version="0.0.3">
  		
  	<name>VolumeButtons</name> 	
  	<description>Cordova plugin which notifies when the user presses the volume buttons of the device</description> 	
