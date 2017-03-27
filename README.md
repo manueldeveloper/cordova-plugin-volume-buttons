@@ -20,15 +20,17 @@
 volume-buttons-listener
 =======================
 
-Cordova plugin which notifies when the user presses the volume up and down buttons of the device. For that, it adds the following `window`event:
+Cordova plugin which notifies when the user presses the volume up and down buttons of the device. For that, it adds the following `window` event:
 
 * volumebuttonslistener
 
 ## Installation
 
-`cordova plugin add https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git`
-`cordova plugin add com.manueldeveloper.volume-buttons`
-	
+``` bash
+cordova plugin add https://github.com/manueldeveloper/cordova-plugin-volume-buttons.git
+cordova plugin add com.manueldeveloper.volume-buttons
+```
+
 ## volumebuttonslistener
 
 This event fires when the user presses the volume up or down button of the device. An object that contains only one property is passed to the volume buttons listener:
@@ -43,9 +45,10 @@ Applications have to use `window.addEventListener`to attach this event listener 
 - iOS (in developing process)
 
 ### Example
-
+``` js
 	window.addEventListener("volumebuttonslistener", onVolumeButtonsListener, false);
 	
 	function onVolumeButtonsListener(info){
 		console.log("Button pressed: " + info.signal);
 	}
+```
